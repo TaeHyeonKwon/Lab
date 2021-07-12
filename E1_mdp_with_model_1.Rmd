@@ -92,9 +92,25 @@ H(X) &= \mathbb E[log \frac{1}{P(x)}]\\
 
 + Example 
   + A trial of randomly picking a ball from a pocket (100 balls in a pocket)
-  1. pocket: red(1), blue(99)
+  1. pocket: red(1), black(99)
   
-  2. pocket: red(50), blue(50)
+  2. pocket: red(50), black(50)
+  
+  \vspace{15pt}
+
+  + Intuitively, you might think that the probability of getting black in the first case is high, so there is less uncertainty. Actually calculating entropy gives the latter much larger.
+  
+  \vspace{10pt}
+  
+  1. $H(x)= 0.01 \times log(0.01)^{-1}+0.99 \times log(0.99)^{-1}$
+  + $\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,= 0.01 \times 2 + 0.99 \times 0.004$
+  + $\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,= 0.02396$
+  
+  2. $H(x)= 0.5 \times log(0.5)^{-1}+ 0.5 \times log(0.5)^{-1}$
+  + $\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,=0.5 \times 0.3010 + 0.5 \times 0.3010$
+  + $\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,=0.3010$
+  
++ As a result, case 2 have bigger entropy than case 1. 
   
 ## Cross Entropy
 
@@ -112,7 +128,13 @@ H(P,Q) &= \sum_{x \in \textbf{x}}P(x)log(\frac{1}{Q(x)})\\
 
 ## Cross Entropy
 
+$$H_p(q) = -\sum_{i=1}^{n}q(x_i)log\,\,p(x_i)$$
 
++ Cross entropy is to predict $q$ through $p$, which is a distribution obtained through modeling, without knowing about the actual distribution $q$. \textbf{Since both $q$ and $p$ are used, it is called cross entropy}.
+
++ In the case of machine learning, there are cases where both the value and $q$ of the real environment are known and the predicted value (observed value) $p$. \textbf{It is used when the machine learning model predicts with a certain percentage of probability, but knows that the actual probability is what percent!}
+
++ In cross entropy, when the actual value and the predicted value match, the value converges to 0, and when the value is different, the value increases. Therefore, it can be called \textbf{entropy to reduce the difference between the actual value and the predicted value}.
 
 
 ## Cross Entropy proof
