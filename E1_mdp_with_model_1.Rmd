@@ -52,14 +52,14 @@ knitr::opts_chunk$set(background = '718CBA')
 
 ## 
 
-$$H(X)=\mathbb E[log\frac{1}{P_x(x)}]$$
+$$H(X)=\mathbb E[log\frac{1}{P(x)}]$$
 
 \vspace{10pt}
 
 For a Discrete (r.v $X$) : w$/pmf \,\,\,\, p(x)=\mathbb P(X=x)$ 
 \begin{align*}
 H(X) &= \mathbb E[log \frac{1}{P(x)}] \\
-&= -\sum p(x)log\frac{1}{P(x)}
+&= \sum p(x)log\frac{1}{P(x)}
 \end{align*}
 
 \vspace{10pt}
@@ -67,7 +67,7 @@ H(X) &= \mathbb E[log \frac{1}{P(x)}] \\
 For a Continuous (r.v $X$): w$/pdf\,\,\,\,f(x)$ 
 \begin{align*}
 H(X) &= \mathbb E[log \frac{1}{P(x)}]\\
-&= -\int f(x)log \frac{1}{f(x)} \,\,\,dx
+&= \int f(x)log \frac{1}{f(x)} \,\,\,dx
 \end{align*}
 
 
@@ -87,17 +87,33 @@ H(X) &= \mathbb E[log \frac{1}{P(x)}]\\
   + $H(x) = \frac{1}{3} \times {log(\frac{1}{3})}^{-1} + \frac{1}{3} \times {log(\frac{1}{3})}^{-1} + \frac{1}{3} \times {log(\frac{1}{3})}^{-1}$
   + $\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,= \frac{1}{3} \times 0.4771 + \frac{1}{3} \times 0.4771 + \frac{1}{3} \times 0.4771$
   + $\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,= 0.4771$
+
+##
+
++ Example 
+  + A trial of randomly picking a ball from a pocket (100 balls in a pocket)
+  1. pocket: red(1), blue(99)
+  
+  2. pocket: red(50), blue(50)
   
 ## Cross Entropy
 
 \begin{definition}
-Definition : It shows the usefulness of obtaining information according to the predicted distribution by using the feature that the actual distribution and the predicted distribution are different after assuming the actual distribution.
+Definition : It shows the usefulness of obtaining information according to the predicted distribution by using the feature that the actual distribution and the predicted distribution($Q(x)$) are different after assuming the actual distribution($P(X)$).
 \end{definition}
 
-\vspace{20pt}
+\vspace{10pt}
 
-$$H(P,Q) = - \sum_{x \in \textbf{x}}P_X(x)logQ_X(x)$$
-$$= -\frac{1}{n}\sum_{x}P(x)logQ(x)+(1-P(x))log(1-Q(x))$$
+\begin{align*}
+H(P,Q) &= \sum_{x \in \textbf{x}}P(x)log(\frac{1}{Q(x)})\\
+&= - \sum_{x \in \textbf{x}}P(x)logQ(x)\\
+&= -\frac{1}{n}\sum_{x}P(x)logQ(x)+(1-P(x))log(1-Q(x))
+\end{align*}
+
+## Cross Entropy
+
+
+
 
 ## Cross Entropy proof
 
@@ -143,7 +159,7 @@ Calculate the information entropy difference that can occur if you sample.
 
 \vspace{15pt}
 
-+ Continuous: $D_{KL}(P||Q) = \int_{-\infty}^{\infty}p(x)log(\frac{p(x)}{q(X)})$
++ Continuous: $D_{KL}(P||Q) = \int_{-\infty}^{\infty}P(x)log(\frac{P(x)}{Q(x)})$
     
     
 ## KL Divergence
