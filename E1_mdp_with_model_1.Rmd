@@ -30,6 +30,27 @@ knitr::opts_chunk$set(background = '718CBA')
 
 # I. Information Theory 
 
+
+## Definition of Entropy
+
+\lc
+
++ [Extensional definition] A state function used to describe the flow of unuseful energy 
+    + "unuseful energy" means it cannot be converted to work
+    + According to the 2nd law of thermal dynamics, entropy
+
+\rc 
+
++ [Statistical definition] Obtaining the expected value of a log index that reflects how important an event is in terms of information.
+    + (Info theory) An informational importance of an event occurred increase over time
+
+\ec
+
+\vspace{10pt}
+
++ if a coin flip is head, is this important info?
++ if an earthquake occurs, is this important info?
+
 ## Entropy
 
 ### Definition
@@ -45,7 +66,6 @@ knitr::opts_chunk$set(background = '718CBA')
   + (Info theory) An informational importance of an event occurred increase over time
 
 \vspace{20pt}
-
 
 + if a coin flip is head, is this important info?
 + if an earthquake occurs, is this important info?
@@ -115,7 +135,7 @@ H(X) &= \mathbb E[log \frac{1}{P(x)}]\\
 ## Cross Entropy
 
 \begin{definition}
-Definition : It shows the usefulness of obtaining information according to the predicted distribution by using the feature that the actual distribution and the predicted distribution($Q(x)$) are different after assuming the actual distribution($P(X)$).
+Definition : It shows the usefulness of obtaining information according to the predicted distribution by using the feature that the actual distribution and the predicted distribution($Q(x)$) are different after assuming the actual distribution($P(x)$).
 \end{definition}
 
 \vspace{10pt}
@@ -128,7 +148,7 @@ H(P,Q) &= \sum_{x \in \textbf{x}}P(x)log(\frac{1}{Q(x)})\\
 
 ## Cross Entropy
 
-$$H_p(q) = -\sum_{i=1}^{n}q(x_i)log\,\,p(x_i)$$
+$$H(P,Q) = -\sum_{i=1}^{n}P(x_i)log\,\,Q(x_i)$$
 
 + Cross entropy is to predict $q$ through $p$, which is a distribution obtained through modeling, without knowing about the actual distribution $q$. \textbf{Since both $q$ and $p$ are used, it is called cross entropy}.
 
@@ -171,7 +191,7 @@ For example sample number is 3.
 
 \begin{definition}
 A function used to calculate the difference between two probability distributions. For an ideal distribution, another distribution that approximates the distribution is used.
-Calculate the information entropy difference that can occur if you sample.
+Calculate the information entropy difference that can occur if you sample. 
 \end{definition}
 
 \vspace{20pt}
