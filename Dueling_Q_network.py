@@ -1,20 +1,24 @@
-import torch.nn as nn
-import torch.nn.functional as F
+import tensorflow as tf
+import tensorflow.keras as keras
+from keras.layers import Dense
+from tensorflow.keras.optimizers import Adam
+import numpy as np
 
 
-class Dueling_Q_network(nn.Module):
+class Dueling_Q_network(keras.Model):
     def __init__(self):
         super(Dueling_Q_network, self).__init__()
-        self.fc1 = nn.Linear(15, 128)  # fc1 : state를 받아서, 128개 Output
-        self.fc_value = nn.Linear(128,1)  # fc_value : fc1의 128개 Output을 input으로 받아 Value function 게산 , Output 1
-        self.fc_advantage = nn.Linear(128,5)  # fc_advatnage : fc1의 128개 Output을 input으로 받아 Advantage function 게산 , Output 4
+        self.dens1 = keras.layers.Dense(128, activation='relu')
+        self.dens2 = keras.layers.Dense(128, activation='relu')
+        self.V = keras.layers.Dense(1, activation=None)
+        self.A = keras.layers.Dense(5, activation=None)
 
-    def forward(self, x):
-        x = F.relu(self.fc1(x))
-        value = (self.fc_value(x))
-        advantage = (self.fc_advantage(x))
+    def call(self, state):
+        x = self.dens1(state)
+        x = self.dens2(x)
+        V = self.V(x)
+        A = self.A(x)
 
-        Average_advantage = advantage.mean()  # Advantage의 평균 계산
-        Q = value + advantage - Average_advantage  # 정확한 Advatngae 계산을 강제하기 위한 제약식
+        Q = (V + (A - tf.math.reduce_mean(A, axis=1, keepdims=True)))
 
         return Q
