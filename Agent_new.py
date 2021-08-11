@@ -3,12 +3,10 @@ import numpy as np
 import random
 from collections import deque
 import tensorflow as tf
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
+import numpy as np
 from Dueling_Q_network import Dueling_Q_network
-
+from tensorflow.keras.optimizers import Adam
+import torch
 
 
 class Agent_new:
@@ -26,26 +24,30 @@ class Agent_new:
         self.predict_action_lst = list()
         self.brain = Dueling_Q_network()
         self.target_brain = Dueling_Q_network()
-        self.optimizer = optim.Adam(self.brain.parameters(), lr=self.learning_rate)
+
+
+        self.brain.compile(optimizer=Adam(learning_rate=self.learning_rate), loss='mean_squared_error')
+        self.target_brain.compile(optimizer=Adam(learning_rate=self.learning_rate), loss='mean_squared_error')
+
 
     def act(self, state):
-        # greedy action
-        with torch.no_grad():
-            if np.random.rand() < self.exploration_rate:
-                rand_action = random.sample(self.action_set, 1)
-                return rand_action[0]
-
-            else:
-                self.brain.eval()
-                q_value = self.brain(torch.tensor(state, dtype=torch.float))
-                return self.action_set[q_value.argmax().item()]
+        if np.random.rand()<self.exploration_rate:
+            rand_action = random.sample(self.action_set, 1)
+            return rand_action[0]
+        else:
+            state = np.expand_dims(state, axis=0).astype('float32')
+            q_value = self.brain.predict(state)
+            action_idx = np.argmax(q_value[0])
+            self.predict_action_lst.append(action_idx)
+            return self.action_set[action_idx]
 
     def remember(self, state, action, reward, next_state):
         self.memory.append(np.hstack((state, action, reward, next_state)).tolist())
 
     def replay(self):
-        self.target_brain.eval()
-        self.brain.train()
+
+
+
         if self.exploration_rate > self.exploration_min: self.exploration_rate *= self.exploration_decay
 
         sample_batch = np.asarray(random.sample(self.memory, self.sample_batch_size))
@@ -54,21 +56,30 @@ class Agent_new:
         reward = np.array([sample[16] for sample in sample_batch])
         next_states = np.array([sample[17:] for sample in sample_batch])
 
-        s, a, r, s_prime = torch.tensor(states, dtype=torch.float), torch.tensor(action), \
-                          torch.tensor(reward, dtype=torch.float), torch.tensor(next_states,dtype=torch.float)
+        #q_pred = self.brain.predict(states)
+        #q_next = tf.math.reduce_max(self.target_brain(next_states),axis=1, keepdims=True).numpy()
+        #q_target = np.copy(q_pred)
 
-        a = 4 * a
-        a = torch.tensor(a, dtype=torch.int64)
-        a = a.view(self.sample_batch_size,1)
-        q_s_a = self.brain(s)
-        update_q_s_a = q_s_a.gather(1, a)
+        q_s_a = self.brain(next_states)
+        idx = np.argmax(q_s_a, axis=1)
+        one_hot_action = tf.one_hot(action * 4, self.action_size)
+        q_s_a *= one_hot_action
+        print(idx)
+        q_target = self.target_brain(next_states)
+        q_target = torch.tensor(q_target)
+        q_out = q_target.gather(1,idx)
+        print(q_out)
+        raise 13
 
-        q_max_out_brain_index = self.brain(s_prime).argmax(1)
-        DDQN_target_value = self.target_brain(s_prime).gather(1, q_max_out_brain_index.unsqueeze(1))
+        target = reward + self.gamma * np.max(q_target,axis=1)
 
-        target = r + self.gamma * DDQN_target_value  # target, r+ gamma * max Q(s`,a`)
+        self.brain.train_on_batch(states,target)
+        #q_target[idx, action[idx]] = reward[idx] + self.gamma * q_next[idx]
 
-        loss = F.smooth_l1_loss(target, update_q_s_a)  # r_gamma*
-        self.optimizer.zero_grad()
-        loss.backward()
-        self.optimizer.step()
+        #self.brain.train_on_batch(states,q_target)
+
+        #target = reward + self.gamma * np.max(self.brain.predict(next_states),axis=1) #target = R + gamma*max_a(q_s',a')
+        #target = target.reshape((300,1)) * one_hot_action
+        #q_s_a_update += target
+
+
