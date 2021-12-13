@@ -10,7 +10,7 @@
 
 + Part 2 
   + Emtion analyze
-      + Use FER2013 Dataset, to recognize the emotion from extracted face
+      + Use **FER2013** Dataset, to recognize the emotion from extracted face
 
 + Part 3
   + Music recommendation
