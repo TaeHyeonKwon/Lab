@@ -5,9 +5,12 @@
 
 + Part 1 
   + Face recognition
+      + Face extract from original image  = MTCNN
+      + Train image embedding = FaceNet 
 
 + Part 2 
   + Emtion analyze
+      + Use FER2013 Dataset, to recognize the emotion from extracted face
 
 + Part 3
   + Music recommendation
