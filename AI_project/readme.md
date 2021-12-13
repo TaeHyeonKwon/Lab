@@ -5,8 +5,8 @@
 
 + Part 1 
   + Face recognition
-      + Face extract from original image  = MTCNN
-      + Train image embedding = FaceNet 
+      + Face extract from original image with **MTCNN**
+      + Train image embedding with **FaceNet** 
 
 + Part 2 
   + Emtion analyze
