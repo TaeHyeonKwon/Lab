@@ -2,6 +2,12 @@
 
 + Dataset and model are saved in Google Drive. This is the link. Before you implement code, you should compress the .zip file 
    + https://drive.google.com/file/d/1QkyqH9eHkGuzljyZsKFKYhKxSqeeXHbG/view?usp=sharing
+   + Contains:
+      + Celebrity image 
+         + https://www.kaggle.com/hereisburak/pins-face-recognition
+      + FER2013
+         + https://www.kaggle.com/msambare/fer2013
+      + Spotify 
 
 + Part 1 
   + Face recognition
