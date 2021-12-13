@@ -14,4 +14,5 @@
 
 + Part 3
   + Music recommendation
+      + Use the **Spotify** dataset, divide the music by two emotion(happy,sad). it is divided by k-means clustering method.
 
