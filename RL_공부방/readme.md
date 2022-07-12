@@ -10,6 +10,15 @@
 + DQN과는 달리 Buffer를 사용하지 않고 매 step마다 update를 진행한다.
 
 
+
+# DDPG
+
++ Deep Deterministic Policy Gradient (DDPG)
+
++ model-free,off-policy 로 학습하기 때문에 잘못된 행동이 누적되어 학습에 영향을 미치는 경우를 방지한다.
+
++ DPG(Deterministic Policy Gradient)에 DQN을 결합한 --> model-free,off-policy Actor Critic 알고리즘이다. 
+
 # TD3
 
 + DQN의 속성인 target Q network와 Q network를 두어 지속적으로 업데이트 하는 방식과 Actor-Critic의 방식을 혼합한 알고리즘
