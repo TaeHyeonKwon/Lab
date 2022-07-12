@@ -13,6 +13,8 @@
 # DPG
 
 
+    + paper : http://proceedings.mlr.press/v32/silver14.pdf
+
 
 # DDPG
 
