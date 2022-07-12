@@ -41,6 +41,8 @@
 
 + DPG(Deterministic Policy Gradient)에 DQN을 결합한 --> model-free,off-policy Actor Critic 알고리즘이다. 
 
++ Actor와 critic 네트워크를 통해 모델을 학습시키는 데,이 과정 속에서 DQN 방식과 유사하게 target 네트워크를 설정해 기존 네트워크로 하여금 업데이트를 진행하도록 한다. 
+
 # TD3
 
 + DQN의 속성인 target Q network와 Q network를 두어 지속적으로 업데이트 하는 방식과 Actor-Critic의 방식을 혼합한 알고리즘
