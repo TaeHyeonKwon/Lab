@@ -7,7 +7,7 @@
 
 
 
-# Rainforce
+# Reinforce
 
 + monte-carlo policy gradient algorithm = Reinforce
 
