@@ -10,6 +10,9 @@
 + DQN과는 달리 Buffer를 사용하지 않고 매 step마다 update를 진행한다.
 
 
+# DPG
+
+
 
 # DDPG
 
