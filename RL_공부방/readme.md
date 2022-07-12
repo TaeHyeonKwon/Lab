@@ -1,3 +1,20 @@
+# Policy-gradient
+
++ reference : https://lilianweng.github.io/posts/2018-04-08-policy-gradient/ , https://talkingaboutme.tistory.com/entry/RL-Policy-Gradient-Algorithms
+
+
++ 
+
+
+
+# Rainforce
+
++ monte-carlo policy gradient algorithm = Reinforce
+
++ 여러번 같은 policy를 수행해서 나온 return값을 sampling해서 $Q^{\pi}(s,a)$를 계산하는 방식
+
+
+
 # Actor-Critic
 
 + Actor 네트워크와 Critic 네트워크를 따로 가짐 
