@@ -37,6 +37,21 @@ class Critic(nn.Module):
         q = F.relu(self.l2(torch.cat([q, action], 1)))
         return self.l3(q)
 
+    
+    
+class OrnsteinUhlenbeckNoise:
+    def __init__(self, mu):
+        self.theta, self.dt, self.sigma = 0.1, 0.01, 0.1
+        self.mu = mu
+        self.x_prev = np.zeros_like(self.mu)
+
+    def __call__(self):
+        x = self.x_prev + self.theta * (self.mu - self.x_prev) * self.dt + \
+                self.sigma * np.sqrt(self.dt) * np.random.normal(size=self.mu.shape)
+        self.x_prev = x
+        return x
+    
+    
 
 class DDPG(object):
     def __init__(self, state_dim, action_dim, max_action):
@@ -46,7 +61,8 @@ class DDPG(object):
         self.gamma = 0.99
         self.tau = 0.001
         self.weight_decay = 1e-2
-
+        self.ou_noise = OrnsteinUhlenbeckNoise(mu=np.zeros(1))
+        
         # Network load
         self.actor = Actor(state_dim, action_dim, max_action).to(device)
         self.actor_target = copy.deepcopy(self.actor)        # Actor 네트워크 복제
@@ -60,9 +76,7 @@ class DDPG(object):
     def select_action(self, state, action_Noise=None):
         state = torch.FloatTensor(state.reshape(1, -1)).to(device)  # state tensor 변환
         action = self.actor(state).cpu().data.numpy().flatten()  # actor 네트워크로부터 액션을 뽑아내고 numpy로 변환 
-        if action_noise is not None:
-            noise = torch.Tensor(action_noise.noise()).to(device) # 액션 노이즈
-            action+=noise
+        action += self.ou_noise()[0]
         return action
 
     def train(self, replay_buffer):
