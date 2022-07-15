@@ -57,9 +57,13 @@ class DDPG(object):
         self.critic_optimizer = torch.optim.Adam(self.critic.parameters(), weight_decay=self.weight_decay)  # optimizer initialize
 
 
-    def select_action(self, state):
+    def select_action(self, state, action_Noise=None):
         state = torch.FloatTensor(state.reshape(1, -1)).to(device)  # state tensor 변환
-        return self.actor(state).cpu().data.numpy().flatten()  # actor 네트워크로부터 액션을 뽑아내고 numpy로 변환
+        action = self.actor(state).cpu().data.numpy().flatten()  # actor 네트워크로부터 액션을 뽑아내고 numpy로 변환 
+        if action_noise is not None:
+            noise = torch.Tensor(action_noise.noise()).to(device) # 액션 노이즈
+            action+=noise
+        return action
 
     def train(self, replay_buffer):
         # batch_size parameter
