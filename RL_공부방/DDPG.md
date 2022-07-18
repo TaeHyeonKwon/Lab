@@ -19,9 +19,9 @@
 
 + Deterministic 하기 때문에 exploration이 stochastic policy gradient보다 적어짐 
         
-       + Actor-Critic 알고리즘의 framework를 적용해 이 문제를 해결함
-       + behavior policy($\beta$)는 exploration을 하게 하고--> Stochastic, target policy($\pi$)를 배우게 함--> Deterministic 
-       +  
+   + Actor-Critic 알고리즘의 framework를 적용해 이 문제를 해결함
+   + behavior policy($\beta$)는 exploration을 하게 하고--> Stochastic, target policy($\pi$)를 배우게 함--> Deterministic 
+   +  
 
 
 
