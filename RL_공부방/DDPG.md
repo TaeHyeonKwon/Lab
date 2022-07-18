@@ -9,7 +9,22 @@
 
 ## 설명 
 
-+ DPG + DQN
++ DDPG = DPG(deterministic + Actor-Critic) + DQN 
+
+## DPG 
+
++ DQN과 같이 value based 알고리즘은 좋은성능을 보이고 있다. 하지만 continuos action space에는 적용이 되지 않는다는 단점이 있음 
+
++ Continuous action을 수행할수 있다
+
++ Deterministic 하기 때문에 exploration이 stochastic policy gradient보다 적어짐 
+        
+        + Actor-Critic 알고리즘의 framework를 적용해 이 문제를 해결함
+        + behavior policy($\beta$)는 exploration을 하게 하고--> Stochastic, target policy($\pi$)를 배우게 함--> Deterministic 
+        + 
+
+
+
     + In DQN
         + DQN과 같이 value estimate network와 그에대한 타켓네트워크를 이용하여 학습을 진행
     + In DPG
@@ -25,6 +40,7 @@
     4. Batch Normalization
         + observed low dimension feature vector로 학습을 진행한다면 feature의 scale 차이로 인해 network가 학습하는데에 어려움을 겪음
         + 샘플들을 하나의 minibatch에 넣고 모든 dimension에 대해 normalize 시킴.
-        + 
+ 
+ + 
 
     
