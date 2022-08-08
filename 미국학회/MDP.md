@@ -133,5 +133,6 @@
 
     + 전력 부족 집에 전력 제공  
     + $X_{t+1} = X_t(1-A^{ess}_t)+f(X_t \times A^{ess}_t)$
+    + $f(X_t \times A^{ess}_t)$은 $diff_t$를 transition하는 함수 
 
 
