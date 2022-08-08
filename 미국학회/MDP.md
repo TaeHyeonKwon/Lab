@@ -118,7 +118,17 @@
 
 ## ESS transition
 
-if $A^{ess}_t \in [-1,0]$   
+if $A^{ess}_t  \subset [-1,0)$ :
+
+    $X_{t+1} = X_t(1+A^{ess}_t)$
+    
+elif $A^{ess}_t  ==0$ :
+
+    $X_{t+1} = X_t$
+    
+elif $A^{ess}_t  \subset (0,1]$ :
+
+    $X_{t+1} = X_t(1-A^{ess}_t)$
 
 
 
