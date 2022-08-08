@@ -41,6 +41,10 @@
 # Notation
 
 
++ $X_t$ : t 시점의 ESS SOC
++ $C^{n}_t$ : t 시점의 n번째 집의 전력수요
++ $G^{n}_t$ : t 시점의 n번째 집의 전력 생산량
+
 
 # State
 
