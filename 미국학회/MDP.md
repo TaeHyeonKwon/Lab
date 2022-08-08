@@ -118,7 +118,7 @@
 
 ## ESS transition
 
-if $A^{ess}_t in [-1,0]$   
+if $A^{ess}_t \in [-1,0]$   
 
 
 
