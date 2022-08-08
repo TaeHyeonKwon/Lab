@@ -106,7 +106,13 @@
 ## $diff_t$ 결정이후
 
 1. if $\sum diff_t$의 합 <0 :
-     1-1. $X_{t}$ = $X_t+\sum diff_t$ 
+    
+    + $X_{t}$ = $X_t+\sum diff_t$ 
+
+2. else:
+    
+    + 전력구매 비용: $\sum diff_t \times P_t$ 
+    + $AC_{t+1} = AC_t+ diff_t$
      
 
 
