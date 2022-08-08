@@ -103,7 +103,11 @@
 + min(4,3) >= $\frac{1}{2}$, $diff_t=[3.5,2.5]$
     
 
+## $diff_t$ 결정이후
 
+1. if $\sum diff_t$의 합 <0 :
+     1-1. $X_{t}$ = $X_t+\sum diff_t$ 
+     
 
 
 
