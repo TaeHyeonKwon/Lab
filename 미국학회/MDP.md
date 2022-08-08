@@ -132,7 +132,7 @@
 + elif $A^{ess}_t  \subset (0,1]$ :
 
     + 전력 부족 집에 전력 제공  
-    + $X_{t+1} = X_t(1-A^{ess}_t)+ f_{allocate}(X_t \times A^{ess}_t)$
+    + $X_{t+1} = X_t(1-A^{ess}_t)+ f_{allo}(X_t \times A^{ess}_t)$
     + 
 
 
