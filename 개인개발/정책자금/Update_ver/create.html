@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src='http://code.jquery.com/jquery-3.3.1.js'></script>
+	<link rel="stylesheet" href="style2.css">
+	<title>Consult</title>
+</head>
+<body>
+	<div>
+		<h1><a href="main.html">Company</a></h1>
+	</div>
+
+	<div class="flexbox">
+		<h3>업종</h3>
+		<select name="job">
+			<option value="" name="job_ele">업종선택</option>
+			<option value="통신업" name="job_ele">통신업</option>
+			<option value="물류업" name="job_ele">물류업</option>
+			<option value="서비스업" name="job_ele">서비스업</option>
+		</select>
+	</div>
+
+	<div class="flexbox">
+		<h3>매출규묘</h3>
+		<select name = "money">
+			<option value="" name="money_ele">매출선택</option>
+			<option value="1억이상" name="money_ele">1억이상</option>
+			<option value="1억이상 10억미만" name="money_ele">1억이상 10억미만</option>
+			<option value="10억 이상" name="money_ele">10억 이상</option>
+		</select>
+	</div>
+
+
+	
+
+
+	<div class="flexbox">
+		<h3>직원수</h3>
+		<select name="number">
+			<option value="" name="number_ele">직원수</option>
+			<option value="10명이상" name="number_ele">10명이상</option>
+			<option value="100명이상" name="number_ele">100명이상</option>
+			<option value="1000명이상" name="number_ele">1000명이상</option>
+		</select>
+	</div>
+
+	<div class="flexbox">
+		<button type="submit" class="btn" onclick="report()">Button</button> 
+	</div>
+
+
+
+	<div class="flexbox">
+		<h4>ABCCOP</h4>
+		<p>TEL : 0212345678</p>
+		<p>E-MAIL : ABCCOP@gmail.com</p>
+	</div>
+</body>
+<script>
+	function report(){
+		
+		const result_lst = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64];
+
+		
+		var msg = '귀사의 정보는 다음과 같습니다.\n';
+	
+		var selectbox_job_lst = document.getElementsByName('job_ele');
+		var selectbox_money_lst = document.getElementsByName('money_ele');
+		var selectbox_number_lst = document.getElementsByName('number_ele');
+
+		var selectbox_job = document.getElementsByName('job');
+		var selectbox_money = document.getElementsByName('money');
+		var selectbox_number = document.getElementsByName('number');
+		
+		msg += ('-' + selectbox_job[0].value + '\n'+'-' + selectbox_money[0].value + '\n'+'-' + selectbox_number[0].value + '\n');
+		
+		alert(msg);
+
+
+		for (var i =0; i<selectbox_job_lst.length; i++){
+			if (selectbox_job[0].value==selectbox_job_lst[i].value){
+				var job=i-1;
+			}
+		}
+		for (var j =0; j<selectbox_money_lst.length; j++){
+			if (selectbox_money[0].value==selectbox_money_lst[j].value){
+				var moeny=j-1;
+			}	
+		}
+
+		for (var k =0; k<selectbox_number_lst.length; k++){
+			if (selectbox_money[0].value==selectbox_money_lst[k].value){
+				var number=k-1;
+			}	
+		}
+
+		var index = (job*16+moeny*4+number*1);
+		alert(result_lst[index]);
+
+
+
+	}
+</script>
+
+</html>

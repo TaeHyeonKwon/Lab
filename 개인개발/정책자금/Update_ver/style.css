@@ -1,0 +1,91 @@
+body{
+    justify-content: center;
+    align-items: center;
+    background-color: #3c3e70;
+}
+
+.btn{
+    font-size: 10px;
+    padding: 15px 30px;
+    border: 3px solid gold;
+    background-color: transparent;
+    color: gold;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-weight: bold;
+    position: relative;
+    transition: all 0.4s;
+    overflow: hidden;
+}
+
+
+.btn:focus{
+    outline: none;
+}
+
+
+
+.btn::before{
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: gold;
+    top: 100%;
+    left: 0;
+    transition: all 0.4s;
+    z-index: -1;
+}
+
+.btn:hover::before{
+    transform: translateY(-100%);
+}
+
+
+.btn:hover{
+    color: #3c3e70;
+}
+
+.btn:visited{
+    background-color: #4285f4;
+}
+
+
+.flexbox{
+    border: 1px solid #3c3e70;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.flexbox1{
+    border: 1px solid #3c3e70;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.flexbox2{
+    border: 1px solid #3c3e70;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.flexbox3{
+    border: 1px solid #3c3e70;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.clicked_btn{
+    color: #4285f4; border-color: #4285f4;
+    color: #4285f4;
+    background: #e9f1fe;
+}
+
+
+.clicked {
+    color: gold;
+  }
