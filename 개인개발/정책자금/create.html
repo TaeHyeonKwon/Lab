@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src='http://code.jquery.com/jquery-3.3.1.js'></script>
+	<link rel="stylesheet" href="style2.css">
+	<title>Consult</title>
+</head>
+<body>
+	<div>
+		<h1><a href="main.html">Money</a></h1>
+	</div>
+	<div class="flexbox">
+		<h3>매출규묘</h3>
+		<select name = "money">
+			<option value="" >매출선택</option>
+			<option value="1억이상" >1억이상</option>
+			<option value="1억이상 10억미만" >1억이상 10억미만</option>
+			<option value="10억 이상" >10억 이상</option>
+		</select>
+	</div>
+
+
+	<div class="flexbox">
+		<h3>업종</h3>
+		<select name="job">
+			<option value="">업종선택</option>
+			<option value="통신업">통신업</option>
+			<option value="물류업">물류업</option>
+			<option value="서비스업">서비스업</option>
+		</select>
+	</div>
+
+
+	<div class="flexbox">
+		<h3>직원수</h3>
+		<select name="number">
+			<option value="">직원수</option>
+			<option value="10명이상">10명이상</option>
+			<option value="100명이상">100명이상</option>
+			<option value="1000명이상">1000명이상</option>
+		</select>
+	</div>
+
+	<div class="flexbox">
+		<button type="submit" class="btn" onclick="report()">Button</button> 
+	</div>
+
+
+
+	<div class="flexbox">
+		<h4>ABCCOP</h4>
+		<p>TEL : 0212345678</p>
+		<p>E-MAIL : ABCCOP@gmail.com</p>
+	</div>
+</body>
+<script>
+	function report(){
+		var msg = '귀사의 정보는 다음과 같습니다.\n';
+		var selectbox_job = document.getElementsByName('job');
+		var selectbox_money = document.getElementsByName('money');
+		var selectbox_number = document.getElementsByName('number');
+		
+		msg += ('-' + selectbox_job[0].value + '\n'+'-' + selectbox_money[0].value + '\n'+'-' + selectbox_number[0].value + '\n');
+		
+		alert(msg);
+	}
+</script>
+
+</html>
